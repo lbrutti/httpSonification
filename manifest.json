@@ -9,6 +9,6 @@
   ],
 
   "background": {
-    "scripts": ["./js/tonejs/13.8.17/Tone.min.js","./js/tmp.js","background.js"]
+    "scripts": ["./js/tonejs/13.8.17/Tone.min.js","background.js"]
   }
 }

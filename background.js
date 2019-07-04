@@ -10,7 +10,6 @@ function onBeforeRequestHandler(requestDetails) {
 	}).connect(env).start();
 
 	env.triggerAttack();
-	//				env.triggerRelease();
 
 }
 
