@@ -25,7 +25,7 @@ let env = new Tone.AmplitudeEnvelope({
 }).toMaster();
 let oscSet = {};
 browser.webRequest.onBeforeRequest.addListener(
-	logURL,
+	onBeforeRequestHandler,
 	{ urls: ["<all_urls>"] }
 );
 
