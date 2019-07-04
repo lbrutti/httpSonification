@@ -1,7 +1,6 @@
 {
-  "description": "Demonstrating webRequests",
-  "manifest_version": 2,
-  "name": "webRequest-demo",
+  "description": "Sonification of HTTP requests",
+  "name": "http-sonifier",
   "version": "1.0",
 
   "permissions": [
