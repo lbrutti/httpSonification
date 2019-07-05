@@ -1,25 +1,25 @@
 
-let env = new Tone.AmplitudeEnvelope({
-	"attack": 0.11,
+let envSettings = {
+	"attack": 0.01,
 	"decay": 0.21,
-	"sustain": 0.5,
-	"release": 1.2
-}).toMaster();
-
+	"sustain": 0,
+	"release": 0.29
+};
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 let envSet = {};
 let oscSet = {};
-
+let pentatonicCmin = ["Co", "Eob", "Fo", "Go", "Bosib"];
 function onBeforeRequestHandler(requestDetails) {
-	envSet[requestDetails.url]=envSet[requestDetails.url] || new Tone.AmplitudeEnvelope({
-		"attack": 0.5,
-		"decay": 0,
-		"sustain": 0,
-		"release": 0
-	}).toMaster();
+  let octave = getRandomInt(2,10);
+	envSet[requestDetails.url]=envSet[requestDetails.url] || new Tone.AmplitudeEnvelope(envSettings).toMaster();
 	oscSet[requestDetails.url] = oscSet[requestDetails.url] || new Tone.Oscillator({
 		"partials": [3, 2, 1],
 		"type": "custom",
-		"frequency": Math.random()*20000,
+		"frequency": pentatonicCmin[getRandomInt(0,4)].replace("o",octave),
 		"volume": -8,
 	}).connect(envSet[requestDetails.url]).start();
 
@@ -37,6 +37,6 @@ browser.webRequest.onBeforeRequest.addListener(
 );
 
 browser.webRequest.onCompleted.addListener(
-	onCompletedHandler, 
+	onCompletedHandler,
 	{ urls: ["<all_urls>"] }
 );
